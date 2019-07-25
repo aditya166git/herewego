@@ -1,0 +1,76 @@
+Add a new user
+
+Check the user roles.If it exists and user role is an admin then insert new into the DB
+
+What happens when an event is started?
+
+List all the date time slot for a particular event
+
+create setters and getters for capacity and timeslots
+
+Find event method
+
+Add a new user
+
+Check if user is an admin
+If the user is an admin then add user to the DB and commit
+import datetime
+def add_user(user_id,first_name,last_name,email,user_role,user_phone):
+	if admin():
+		try
+			cursor.execute('''INSERT INTO users(user_id,first_name, last_name,email, user_role,user_phone)
+	                  VALUES(?,?,?,?,?,?)''', (user_id,first_name,last_name,email,user_role,user_phone)))
+	        db.commit()
+	    catch: Error E
+	else:
+		Return "Invalid Operation for user"
+
+
+def display_timeslot(venue_id):
+
+
+
+
+ 5 - 6
+
+INSERT INTO users(first_name,last_name,dob,email,user_role,user_phone,creation_date,username)
+VALUES
+("Aditya","Shetty",strftime('%Y-%m-%d','2001-01-01'),"aditya@gmail.com","admin","2179798071",strftime('%Y-%m-%d','now','localtime'),"aditya"),
+("Darasimi","Oluwaniyi",strftime('%Y-%m-%d','2001-01-01'),"aditya@gmail.com","admin","2179798071",strftime('%Y-%m-%d','now','localtime'),"darasimi"),
+("Jane","Doe",strftime('%Y-%m-%d','2001-01-01'),"aditya@gmail.com","user","2179798071",strftime('%Y-%m-%d','now','localtime'),"jane"),
+("John","Doe",strftime('%Y-%m-%d','2001-01-01'),"aditya@gmail.com","user","2179798071",strftime('%Y-%m-%d','now','localtime'),"john")
+
+INSERT INTO venues (venue_name,venue_open,venue_close,zip_code,city,address)
+VALUES
+("rainey",strftime('%H:%M','10:00'),strftime('%H:%M','20:00'),"78722","Austin","102 parkway Ave"),
+("uptown austin",strftime('%H:%M','09:00'),strftime('%H:%M','17:00'),"78723","Austin","111 parkway Ave"),
+("capitol",strftime('%H:%M','09:00'),strftime('%H:%M','15:00'),"78724","Austin","171 parkway Ave"),
+("carlson",strftime('%H:%M','00:00'),strftime('%H:%M','12:00'),"78721","Austin","105 parkway Ave")
+
+INSERT INTO venue_calendar(venue_id,venue_date,slot_start,slot_end,is_available)
+VALUES
+(1,strftime('%Y-%m-%d','now'),strftime('%H:%M','11:00'),strftime('%H:%M','12:00'),"Y"),
+(2,strftime('%Y-%m-%d','now'),strftime('%H:%M','12:00'),strftime('%H:%M','13:00'),"Y"),
+(3,strftime('%Y-%m-%d','now'),strftime('%H:%M','10:00'),strftime('%H:%M','11:00'),"Y"),
+(1,strftime('%Y-%m-%d','now'),strftime('%H:%M','12:00'),strftime('%H:%M','13:00'),"Y")
+
+CREATE TABLE "events" (
+	"event_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	"event_name"	TEXT NOT NULL,
+	"event_city"	TEXT NOT NULL,
+	"event_type"	TEXT,
+	"event_start"	TEXT NOT NULL,
+	"event_end"	TEXT,
+	"event_capacity"	INTEGER NOT NULL,
+	"venue_id"	INTEGER NOT NULL,
+	"creation_date"	TEXT NOT NULL, 
+    user_id INTEGER,
+	FOREIGN KEY("venue_id") REFERENCES "venues"("venue_id")
+)
+
+INSERT INTO events (event_name,event_city,event_type,event_start,event_end,event_capacity,creation_date,venue_id,user_id)
+VALUES
+("soccer", "Austin","sports",strftime('%H:%M','10:00'),strftime('%H:%M','11:00'),10,strftime('%Y-%m-%d','now','localtime'),1,1),
+("painting", "Austin","recreation",strftime('%H:%M','11:00'),strftime('%H:%M','12:00'),10,strftime('%Y-%m-%d','now','localtime'),1,2),
+("singing", "Austin","talent",strftime('%H:%M','12:00'),strftime('%H:%M','13:00'),20,strftime('%Y-%m-%d','now','localtime'),2,3),
+("dacning", "Austin","fitness",strftime('%H:%M','13:00'),strftime('%H:%M','14:00'),20,strftime('%Y-%m-%d','now','localtime'),2,4)
